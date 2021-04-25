@@ -22,7 +22,7 @@ COPY ./ /var/www/php-src
 # 编译安装
 RUN cd /var/www/php-src && ls \
 	&& ./buildconf \
-	&& ./configure --enable-phpdbg-debug --enable-debug \
+	&& ./configure --enable-phpdbg-debug --enable-debug --enable-fpm \
 	&& make clean \
 	&& make \
 	&& find -type f -name '*.a' -delete \
