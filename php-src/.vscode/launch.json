@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "(gdb) php-cli",
             "type": "cppdbg",
             "request": "launch",
             "program": "/usr/local/bin/php",
@@ -16,6 +16,22 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        // debug a running php-fpm process
+        {
+            "name": "(gdb) php-fpm",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "/usr/local/sbin/php-fpm",
+            "processId": "${command:pickProcess}",
             "MIMode": "gdb",
             "setupCommands": [
                 {

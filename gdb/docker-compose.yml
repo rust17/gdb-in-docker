@@ -3,4 +3,19 @@ version: '3'
 services:
   gdb:
     build: ./
+    volumes:
+      - ./public:/var/www/html
     tty: true
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_PTRACE
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx.default.conf:/etc/nginx/conf.d/default.conf
+      - ./public:/var/www/html
+    depends_on:
+      - gdb
